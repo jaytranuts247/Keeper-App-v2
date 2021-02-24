@@ -1,0 +1,4 @@
+{
+	"mongoURI": "mongodb+srv://jaytran:ubDWkfk8Py5nqqhX@cluster0.nadfl.mongodb.net/users?retryWrites=true&w=majority",
+	"jwtSecret": "secret"
+}

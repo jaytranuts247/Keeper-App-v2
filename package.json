@@ -1,0 +1,29 @@
+{
+  "name": "keeper-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "description": "Keeper Note App",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm add --cwd client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Jay Tran",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.0",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.18"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
+  }
+}

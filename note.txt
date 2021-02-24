@@ -1,0 +1,22 @@
+How to initialize projects backend
+
+1.initialize
+npm init -y
+yarn init -y
+
+git init -y 
+
+2.install all the packages
+
+yarn add 
+npm install
+
+// for this project
+// yarn add express bcryptjs jsonwebtoken mongoose config joi 
+// yarn add -D concurrently nodemon
+
+3. connect to server
+
+
+
+
