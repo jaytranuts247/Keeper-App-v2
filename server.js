@@ -14,9 +14,9 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // define routes
-app.get("/", (req, res) => {
-	res.send("server is working ...");
-});
+// app.get("/", (req, res) => {
+// 	res.send("server is working ...");
+// });
 app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notes", require("./routes/notes"));
