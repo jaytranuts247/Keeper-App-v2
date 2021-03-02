@@ -1,20 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import HandleClickOutside from "./HandleClickOutside";
 import { useSpring, animated } from "react-spring";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 import "./animation.css";
-import nextId from "react-id-generator";
+
+import { addNote } from "../context/note/NoteState";
+import NoteContext from "../context/note/noteContext";
 
 // var interval = 3000;
+const initialNote = { title: "", content: "" };
 
 function AddNote(props) {
-	const initialnote = { key: nextId(), title: "", content: "" };
-	const [note, setNote] = useState(initialnote);
-
+	const [note, setNote] = useState(initialNote);
 	const [isExpand, setIsExpand] = useState(false);
 	const ref = useRef(null); // ref to form div
+
+	const { dispatch: noteDispatch } = useContext(NoteContext);
 
 	const titleAnimation = useSpring({
 		opacity: isExpand ? 1 : 0,
@@ -34,45 +37,23 @@ function AddNote(props) {
 		},
 	});
 
-	function onChange(e) {
-		// clearTimeout(MyTimeout);
-
+	const onChange = (e) => {
 		const { name, value } = e.target;
-		console.log("name and value", name, value);
 		setNote((prevNote) => {
 			return { ...prevNote, [name]: value };
 		});
-
-		// MyTimeout = setTimeout(() => {
-		// 	console.log("clear timeout 2");
-		// 	setIsExpand(false);
-		// }, 4000);
-	}
-
-	const onSubmit = (event) => {
-		// const note = {title: e.target.}
-
-		// setNote((prevNote) => {
-		// 	const keyId = nextId() + 10;
-		// 	console.log(keyId);
-		// 	return { ...prevNote, key: keyId };
-		// });
-		console.log(note.key);
-		props.addNoteHandler(note);
-		setNote(initialnote);
-		event.preventDefault();
 	};
 
-	function onClick() {
-		console.log("on Clicked");
-
-		setIsExpand(true);
-		console.log("isExpand", isExpand);
-	}
-
-	function Collapse() {
+	const onSubmit = (event) => {
+		event.preventDefault();
+		addNote(noteDispatch, note);
+		setNote(initialNote);
 		setIsExpand(false);
-	}
+	};
+
+	const onClick = () => setIsExpand(true);
+
+	const Collapse = () => setIsExpand(false);
 
 	HandleClickOutside(ref, Collapse, isExpand);
 

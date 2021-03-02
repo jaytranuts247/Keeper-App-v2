@@ -7,7 +7,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "clientinstall": "npm add --cwd client",
+    "clientinstall": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Jay Tran",

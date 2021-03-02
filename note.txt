@@ -12,11 +12,17 @@ yarn add
 npm install
 
 // for this project
-// yarn add express bcryptjs jsonwebtoken mongoose config joi 
+// yarn add express bcryptjs jsonwebtoken mongoose config joi express-validation
 // yarn add -D concurrently nodemon
 
 3. connect to server
 
+Process
+1. auth 
+  - send login infor {email, password}
+  - validation (email correct, password and confirmed password match)
+  - recieve the token from server
 
+  - then send token to the server to get the user info -> then load to front end state
 
 

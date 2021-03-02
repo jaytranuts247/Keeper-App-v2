@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import { useTransition, useSpring, animated } from "react-spring";
+import { deleteNote, updateNote } from "../context/note/NoteState";
+
 import DeleteIcon from "@material-ui/icons/Delete";
 import SendIcon from "@material-ui/icons/Send";
 import EditIcon from "@material-ui/icons/Edit";
 import CloseIcon from "@material-ui/icons/Close";
+import NoteContext from "../context/note/noteContext";
 
 function Note(props) {
-	const initialNote = {
+	const [IsEdit, setIsEdit] = useState(false);
+	const { dispatch: noteDispatch } = useContext(NoteContext);
+	const [note, setNote] = useState({
 		id: "",
 		title: "",
 		content: "",
-	};
-	const [IsEdit, setIsEdit] = useState(false);
-	// const [Zindex, setZindex] = useState({ zIndex: "1" });
-	// const [isDelete, setIsDelete] = useState(false);
-
-	const [note, setNote] = useState(initialNote);
+	});
 
 	function AutoResize() {
 		this.style.height = "auto";
 		this.style.height = this.scrollHeight + "px";
 	}
+
 	function setAutoResize() {
 		const textarea1 = document.querySelector("#auto-resizing1");
 		console.log(textarea1);
@@ -28,29 +29,33 @@ function Note(props) {
 	}
 
 	useEffect(() => {
-		const updateNote = {
+		const newNote = {
 			id: props.id,
 			title: props.title,
 			content: props.content,
 		};
-		setNote(updateNote);
+		setNote(newNote);
+		// updateNote(noteDispatch, note);
 		if (IsEdit) setAutoResize();
 	}, [IsEdit, props.content, props.id, props.title]);
 
-	function onDelete(e) {
-		// setIsDelete(true);
-		console.log("Delete iTem");
-		props.deleteNote(props.id);
-
+	const onDelete = (e) => {
 		e.preventDefault();
-	}
+		console.log("Delete iTem");
+		deleteNote(noteDispatch, note.id);
+	};
 
-	function onChange(e) {
+	const onChange = (e) => {
 		const { name, value } = e.target;
 		setNote((prevNote) => {
 			return { ...prevNote, [name]: value };
 		});
-	}
+	};
+
+	const onEditNote = () => {
+		updateNote(noteDispatch, note);
+		setIsEdit(false);
+	};
 
 	const onEdit = () => {
 		return (
@@ -68,12 +73,7 @@ function Note(props) {
 					value={note.content}
 					onChange={onChange}
 				/>
-				<button
-					onClick={() => {
-						props.onEditNote(props.id, note);
-						setIsEdit(false);
-					}}
-				>
+				<button onClick={onEditNote}>
 					<SendIcon />
 				</button>
 				<button onClick={() => setIsEdit(false)}>
@@ -86,8 +86,8 @@ function Note(props) {
 	const onShow = () => {
 		return (
 			<div className="note">
-				<h1>{props.title}</h1>
-				<p>{props.content}</p>
+				<h1>{note.title}</h1>
+				<p>{note.content}</p>
 				<button onClick={onDelete}>
 					<DeleteIcon />
 				</button>
@@ -100,36 +100,5 @@ function Note(props) {
 
 	return IsEdit ? onEdit() : onShow();
 }
-/*
-<animated.div className="note" style={DeleteAnimation}>
-	<h1>{props.title}</h1>
-	<p>{props.content}</p>
-	<button onClick={onDelete}>
-		<DeleteIcon />
-	</button>
-	<button onClick={() => setIsEdit(true)}>
-		<EditIcon />
-	</button>
-</animated.div>;
-*/
-// {
-// 	fadingTextPropsTransition.map(({ item, props, key }) => (
-// 		<animated.div key={key} style={{ ...props, position: "absolute" }}>
-// 			<p className={s.Carousel__Title}>{item.title}</p>
-// 		</animated.div>
-// 	));
-// }
 
-// fadeOutPropsTransition.map(({ note, styleprops, key }) => (
-// 			<animated.div className="note" key={key} style={{ styleprops }}>
-// 				<h1>{props.title}</h1>
-// 				<p>{props.content}</p>
-// 				<button onClick={onDelete}>
-// 					<DeleteIcon />
-// 				</button>
-// 				<button onClick={() => setIsEdit(true)}>
-// 					<EditIcon />
-// 				</button>
-// 			</animated.div>
-// 		))
 export default Note;

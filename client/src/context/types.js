@@ -1,14 +1,16 @@
-// Contact
-export const GET_CONTACTS = "GET_CONTACTS";
-export const ADD_CONTACT = "ADD_CONTACT";
-export const DELETE_CONTACT = "DELETE_CONTACT";
+// Note
+export const GET_NOTES = "GET_NOTES";
+export const ADD_NOTE = "ADD_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
+export const UPDATE_NOTE = "UPDATE_NOTE";
 export const SET_CURRENT = "SET_CURRENT";
 export const CLEAR_CURRENT = "CLEAR_CURRENT";
-export const UPDATE_CONTACT = "UPDATE_CONTACT";
-export const FILTER_CONTACTS = "FILTER_CONTACTS";
-export const CLEAR_CONTACTS = "CLEAR_CONTACTS";
-export const CONTACT_ERROR = "CONTACT_ERROR";
+export const CLEAR_NOTES = "CLEAR_NOTES";
+export const FILTER_NOTES = "FILTER_NOTES";
 export const CLEAR_FILTER = "CLEAR_FILTER";
+export const NOTE_ERROR = "NOTE_ERROR";
+// Contact
+
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 // Auth

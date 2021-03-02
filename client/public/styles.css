@@ -15,14 +15,31 @@ body {
 header {
 	background-color: #f5ba13;
 	margin: auto -16px;
-	padding: 16px 32px;
+	padding: 16px 50px;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-header h1 {
+header div {
+	display: flex;
+}
+
+a {
+	margin-left: 20px;
+	text-decoration: none;
+}
+
+header h1,
+header h3 {
 	color: #fff;
 	font-family: "McLaren", cursive;
 	font-weight: 200;
+}
+
+h3 span {
+	margin-left: 10px;
 }
 
 footer {
@@ -44,9 +61,6 @@ div.container {
 	overflow: auto;
 }
 
-.allnote {
-	/*display: flex;*/
-}
 .note {
 	position: relative;
 	background: #fff;
@@ -58,6 +72,8 @@ div.container {
 	margin: 10px;
 	float: left;
 	max-width: inherit;
+	box-sizing: border-box;
+	flex: 1 1 100%;
 }
 .note h1,
 input {
@@ -95,11 +111,15 @@ textarea {
 	resize: none;
 }
 
+.note p {
+	margin: 10px 0;
+}
+
 .note button {
 	position: relative;
 	float: right;
 	/*margin-right: 10px;*/
-	color: #f5ba13;
+	color: #f5ba13b2;
 	border: none;
 	width: 42px;
 	height: 36px;
@@ -169,6 +189,7 @@ form.create-note button {
 .form-group input {
 	margin: 0.5rem 0;
 	width: 100%;
+	line-height: 1.5;
 }
 
 .form-container {
@@ -192,6 +213,11 @@ button {
 	border-radius: 3px;
 	background: #f5ba13b2;
 	cursor: pointer;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 10px;
 }
 
 @keyframes example {
@@ -222,4 +248,6 @@ button {
 }
 .xblock {
 	margin: 8px;
+	box-sizing: border-box;
+	display: flex;
 }
